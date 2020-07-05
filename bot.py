@@ -24,3 +24,10 @@ class GladiatusBot():
         time.sleep(2)
         login = self.driver.find_element_by_xpath('//*[@id="accountlist"]/div/div[1]/div[2]/div/div/div[11]/button/span')
         login.click()
+        time.sleep(3)
+        self.driver.get('https://s1-ro.gladiatus.gameforge.com/game/index.php?mod=map&submod=city&sh=dae86c24e7240eea589ehttps://s1-ro.gladiatus.gameforge.com/game/index.php?mod=overview&login=1&sh=a3946fe9cdb658318b407f4f2cfd38a8ca02bcd88154-gdhdfhdfhdfhdfhd')
+    def switchTab(self):
+        self.driver.switch_to.window(self.driver.window_handles[1])
+    def trainer(self):
+        trainer = self.driver.find_element_by_xpath('//*[@id="submenu1"]/a[1]')
+        trainer.click()
