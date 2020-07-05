@@ -1,7 +1,7 @@
 import bot
-
-bot = bot.GladiatusBot()
+from secret import username, password
+bot = bot.GladiatusBot(username, password)
 bot.login()
 bot.switchTab()
 bot.trainer()
-bot.gainCost()
+bot.gainPower()

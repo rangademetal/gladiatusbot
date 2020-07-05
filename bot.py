@@ -2,13 +2,16 @@ from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
 
 import time
+from secret import username, password
 
 
 class GladiatusBot():
 
-    def __init__(self):
+    def __init__(self, username, password):
         path = 'C:\Program Files (x86)\chromedriver.exe'
         self.driver = webdriver.Chrome(path)
+        self.username = username
+        self.password = password
 
     def login(self):
         self.driver.get(
@@ -40,18 +43,54 @@ class GladiatusBot():
         self.driver.switch_to.window(self.driver.window_handles[1])
 
     def trainer(self):
-        trainer = self.driver.find_element_by_xpath('//*[@id="submenu1"]/a[1]')
+        trainer = self.driver.find_element_by_xpath('//*[@id="submenu1"]/a[2]')
         trainer.click()
+        time.sleep(3)
 
-    def gainCost(self):
-        choose = []
-        choose.append("Strenght: " + self.driver.find_element_by_xpath('//*[@id="training_box"]/div[2]/div[2]/div').text+' gold')
-        choose.append("Dextelity: " + self.driver.find_element_by_xpath('//*[@id="training_box"]/div[3]/div[2]/div').text+' gold')
-        choose.append("Agility: " + self.driver.find_element_by_xpath('//*[@id="training_box"]/div[4]/div[2]/div').text + ' gold')
-        choose.append("Resitence: " + self.driver.find_element_by_xpath('//*[@id="training_box"]/div[5]/div[2]/div').text + ' gold')
-        choose.append("Charisma: " + self.driver.find_element_by_xpath('//*[@id="training_box"]/div[6]/div[2]/div').text + ' gold')
-        choose.append("Intelect: " + self.driver.find_element_by_xpath('//*[@id="training_box"]/div[7]/div[2]/div').text + ' gold')
-        print('====================================================================================================================')
-        for i in choose:
-             print(i)
-        print('====================================================================================================================')
+    def gainPower(self):
+        money = int(self.driver.find_element_by_xpath('//*[@id="sstat_gold_val"]').text)
+        while money !=0:
+            # Strength
+            trainer = int(self.driver.find_element_by_xpath('//*[@id="training_box"]/div[2]/div[2]/div').text)
+            if money > trainer:
+                money = money - trainer;
+                print("You have", money, " golds")
+                cost = self.driver.find_element_by_xpath('//*[@id="training_box"]/div[2]/div[2]/a')
+                cost.click()
+            # Dexterity
+            trainer = int(self.driver.find_element_by_xpath('//*[@id="training_box"]/div[3]/div[2]/div').text)
+            if money > trainer:
+                money = money - trainer;
+                print("You have", money, " golds")
+                cost = self.driver.find_element_by_xpath('//*[@id="training_box"]/div[3]/div[2]/a')
+                cost.click()
+            # Agility
+            trainer = int(self.driver.find_element_by_xpath('//*[@id="training_box"]/div[4]/div[2]/div').text)
+            if money > trainer:
+                money = money - trainer;
+                print("You have", money, " golds")
+                cost = self.driver.find_element_by_xpath('//*[@id="training_box"]/div[4]/div[2]/a')
+                cost.click()
+            # Resistence
+            trainer = int(self.driver.find_element_by_xpath('//*[@id="training_box"]/div[5]/div[2]/div').text)
+            if money > trainer:
+                money = money - trainer;
+                print("You have", money, " golds")
+                cost = self.driver.find_element_by_xpath('//*[@id="training_box"]/div[5]/div[2]/a')
+                cost.click()
+            # Charisma
+            trainer = int(self.driver.find_element_by_xpath('//*[@id="training_box"]/div[6]/div[2]/div').text)
+            if money > trainer:
+                money = money - trainer;
+                print("You have", money, " golds")
+                cost = self.driver.find_element_by_xpath('//*[@id="training_box"]/div[6]/div[2]/a')
+                cost.click()
+            # Intelect
+            trainer = int(self.driver.find_element_by_xpath('//*[@id="training_box"]/div[7]/div[2]/div').text)
+            if money > trainer:
+                money = money - trainer;
+                print("You have", money, " golds")
+                cost = self.driver.find_element_by_xpath('//*[@id="training_box"]/div[7]/div[2]/a')
+                cost.click()
+
+
