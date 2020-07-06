@@ -1,6 +1,6 @@
 from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
-
+from selenium.webdriver.common.action_chains import ActionChains
 import time
 from secret import username, password
 
@@ -92,5 +92,15 @@ class GladiatusBot():
                 print("You have", money, " golds")
                 cost = self.driver.find_element_by_xpath('//*[@id="training_box"]/div[7]/div[2]/a')
                 cost.click()
+    def principal(self):
+        clicker = self.driver.find_element_by_xpath('//*[@id="mainmenu"]/a[1]')
+        clicker.click()
+    def showItems(self):
+        source_element = self.driver.find_element_by_xpath('//*[@id="inv"]/div[1]')
+        dest_element = self.driver.find_element_by_xpath('//*[@id="char"]/div[3]')
+        print(source_element.text)
+        print(dest_element.text)
+        ActionChains(self.driver).drag_and_drop(source_element, dest_element).perform()
+
 
 
